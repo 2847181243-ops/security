@@ -19,7 +19,7 @@
 
 - lab-linux + Docker，镜像 vulhub/activemq:5.17.3；
 - 容器 activemq，61616（OpenWire）、8161（Web）；
-- 验证器 activemq_validator.py v1.0.0，只做固定 XML 加载与固定身份命令（id/hostname），不提供反弹 shell；
+- 验证器 activemq_validator.py v1.0.0，只做固定 XML 加载与固定身份命令（id/whoami/hostname/uname），不提供反弹 shell；
 - 拉镜像时临时 NAT，验证后撤掉，只保留 labnet。
 
 ## 3. 假设
@@ -43,7 +43,8 @@ H1：OpenWire 的 ExceptionResponse 可加载攻击者 XML；H2：XML 中的 bea
 ## 6. 证据
 
 - 证据文件：data/security/experiments/CVE-2023-46604/evidence.txt；
-- CSV：data/security/experiments/CVE-2023-46604/rce.csv；
+- XML 原始 CSV：data/security/experiments/CVE-2023-46604/proof.csv；
+- RCE CSV：data/security/experiments/CVE-2023-46604/rce.csv；
 - 输出：CVE-2023-46604 RCE CONFIRMED | uid=0(root) gid=0(root) groups=0(root) | user=root | host=3b89b15c...；
 - 容器：vulhub/activemq:5.17.3，0.0.0.0:61616->61616。
 
