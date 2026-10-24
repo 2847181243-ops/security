@@ -43,7 +43,7 @@ hits=1 total=2。
 
 ## 6. 证据
 
-- 证据文件：data/security/experiments/LAB-DET-022/evidence.txt；
+- 证据文件：data/security/experiments/LAB-DET-022/evidence.txt（含 sigma_validate files=17 ok=17）；
 - 规则：docs/security/detections/jenkins-cli-at.yml；
 - 脚本：runtime/security/detect_jenkins_cli.mjs。
 
