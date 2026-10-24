@@ -1,0 +1,9 @@
+*.exe
+*.iso
+*.vdi
+*.zip
+*.log
+data/
+lab/
+samples/
+node_modules/

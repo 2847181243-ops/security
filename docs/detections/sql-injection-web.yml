@@ -1,0 +1,27 @@
+title: SQL Injection Attempt in Web Access Log
+id: 6f1c2a9e-lab-0001
+status: experimental
+description: Detects common SQL injection payloads in web access log query strings.
+author: lead
+date: 2026/10/24
+logsource:
+  category: webserver
+detection:
+  selection_encoded:
+    cs-uri-query|contains:
+      - "%27%20OR%20"
+      - "%27%20or%20"
+      - "UNION%20SELECT"
+      - "union%20select"
+  selection_plain:
+    cs-uri-query|contains:
+      - "' OR '"
+      - "UNION SELECT"
+  condition: selection_encoded or selection_plain
+falsepositives:
+  - Security scanners in authorized tests
+  - Search terms containing SQL keywords
+level: high
+tags:
+  - attack.initial_access
+  - attack.t1190
