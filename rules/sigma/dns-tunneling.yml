@@ -1,0 +1,18 @@
+title: DNS Tunneling Long Query Label
+id: "ce621c75-2926-44f0-ae65-f1fcf17a6755"
+status: experimental
+description: Detects DNS queries with unusually long encoded labels (possible tunneling).
+author: lead
+date: 2026/10/24
+logsource:
+  category: dns
+detection:
+  selection:
+    QueryName|re: '^[A-Za-z0-9+/=_-]{40,}\.'
+  condition: selection
+falsepositives:
+  - CDN or telemetry domains with long labels
+level: medium
+tags:
+  - attack.command_and_control
+  - attack.t1071.004
