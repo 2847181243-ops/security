@@ -14,3 +14,11 @@
 +        first >= 240;
  }
  /** Private/loopback/link-local ranges for IPv6 literals (no brackets). */
+--- a/lib/media.js
++++ b/lib/media.js
+@@ -267,7 +267,7 @@
+ function isPrivateIpv6(address) {
+     const lower = address.toLowerCase();
+-    if (lower === '::' || lower === '::1')
++    if (lower === '::' || lower === '::1' || lower.startsWith('64:ff9b:'))
+         return true;
