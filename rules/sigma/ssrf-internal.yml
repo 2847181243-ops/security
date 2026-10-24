@@ -1,0 +1,26 @@
+title: SSRF to Internal Address in Web Log
+id: 6f1c2a9e-lab-0006
+status: experimental
+description: Detects URL parameters targeting loopback or link-local addresses.
+author: lead
+date: 2026/10/24
+logsource:
+  category: webserver
+detection:
+  url_param:
+    cs-uri-query|contains: 'url='
+  internal:
+    cs-uri-query|contains:
+      - '127.0.0.1'
+      - 'localhost'
+      - '169.254.'
+      - '10.'
+      - '192.168.'
+  condition: url_param and internal
+falsepositives:
+  - Authorized tests
+  - Apps proxying to intentionally local services
+level: high
+tags:
+  - attack.initial_access
+  - attack.t1190
