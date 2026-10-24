@@ -1,0 +1,24 @@
+title: Reflected XSS Attempt in Web Access Log
+id: 6f1c2a9e-lab-0002
+status: experimental
+description: Detects HTML script payloads in web access log query strings.
+author: lead
+date: 2026/10/24
+logsource:
+  category: webserver
+detection:
+  selection:
+    cs-uri-query|contains:
+      - "%3Cscript"
+      - "%3cscript"
+      - "<script"
+      - "onerror%3D"
+      - "onerror="
+  condition: selection
+falsepositives:
+  - Authorized security testing
+  - Documentation pages quoting payloads
+level: high
+tags:
+  - attack.initial_access
+  - attack.t1189

@@ -1,0 +1,28 @@
+title: Web Server Spawning Shell
+id: 6f1c2a9e-lab-0003
+status: experimental
+description: Detects a web server process spawning a shell, a common command-injection pattern.
+author: lead
+date: 2026/10/24
+logsource:
+  category: process_creation
+  product: linux
+detection:
+  parent:
+    ParentImage|endswith:
+      - '/apache2'
+      - '/httpd'
+      - '/nginx'
+  child:
+    Image|endswith:
+      - '/sh'
+      - '/bash'
+      - '/dash'
+  condition: parent and child
+falsepositives:
+  - CGI scripts that legitimately invoke shell
+  - Admin maintenance scripts
+level: high
+tags:
+  - attack.execution
+  - attack.t1059.004
