@@ -27,7 +27,7 @@ H1：真实攻击请求能被规则命中；H2：正常请求不被误报。
 
 ## 4. 步骤
 
-1. 修复 host-only 路由（加 169.254.78.0/24 dev enp0s8），SSH 打通；
+1. 修复 host-only 路由（加 192.0.2.30/24 dev enp0s8），SSH 打通；
 2. 导出日志到 data/security/detections/live-dvwa.log；
 3. 跑两条规则，查看 ALERT 行。
 

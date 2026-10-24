@@ -45,5 +45,5 @@
 ## 附：host-only 管理网卡
 
 - 两块网卡都在 169.254/16 时，回复会走错接口；给管理网卡加更具体的 /24 路由即可：
-  `ip route add 169.254.78.0/24 dev enp0s8`
+  `ip route add 192.0.2.30/24 dev enp0s8`
 - 之后可用 SSH 直接取 `docker logs`，做真实日志检测验证。
