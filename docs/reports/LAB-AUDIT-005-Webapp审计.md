@@ -35,6 +35,7 @@ H1：训练靶场保留 XSS/SQLi/SSRF/IDOR；H2：文件读取可能缺少路径
 | 项 | 结果 | 判断 |
 |---|---|---|
 | /xss | 200，脚本原样回显 | 设计内反射 XSS |
+| /login 注入 | 200，返回 logged in as admin (injection) | 设计内 SQLi |
 | /idor?id=2 | 200，返回 bob/admin | 设计内越权 |
 | /file?name=public.txt | 200 | 正常 |
 | /file 路径穿越 | 修复前 200 读到 lab.pass（内容不记录）；修复后 403 | 已确认并修复 |
@@ -48,7 +49,7 @@ H1：训练靶场保留 XSS/SQLi/SSRF/IDOR；H2：文件读取可能缺少路径
 
 ## 7. 分析
 
-事实：XSS、IDOR、SSRF 按设计存在；/file 用 path.join 未校验解析后路径，实测 `../../lab.pass` 返回 200（凭据文件被读），已改为 resolve + 前缀校验，修复后同一请求 403。
+事实：XSS、SQLi、IDOR、SSRF 按设计存在；/file 用 path.join 未校验解析后路径，实测 `../../lab.pass` 返回 200（凭据文件被读），已改为 resolve + 前缀校验，修复后同一请求 403。
 
 ## 8. 风险与影响
 
