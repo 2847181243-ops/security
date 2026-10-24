@@ -31,3 +31,4 @@ jobs:
           node scripts/detect_log4shell.mjs
           node scripts/detect_dns_tunnel.mjs
           node scripts/detect_struts.mjs
+          node scripts/detect_tomcat_put.mjs

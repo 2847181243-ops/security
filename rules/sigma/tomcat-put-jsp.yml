@@ -1,0 +1,19 @@
+title: Tomcat PUT JSP Upload Attempt
+id: "faed4f9a-add1-4b03-84a9-ba35e52ac122"
+status: experimental
+description: Detects PUT requests targeting JSP paths (CVE-2017-12615 style).
+author: lead
+date: 2026/10/24
+logsource:
+  category: webserver
+detection:
+  selection:
+    cs-method: PUT
+    cs-uri-stem|endswith: '.jsp'
+  condition: selection
+falsepositives:
+  - Authorized WebDAV uploads
+level: high
+tags:
+  - attack.persistence
+  - cve.2017.12615
