@@ -5,7 +5,7 @@
 | 项 | 值 |
 |---|---|
 | 编号 | LAB-AUDIT-006 |
-| 日期 | 2026-10-25 |
+| 日期 | 2026-10-24 |
 | 执行 | lead（AI） |
 | 分类 | 配置审计 |
 | 风险级别 | 低 |
@@ -18,7 +18,8 @@
 ## 2. 范围与环境
 
 - lab-linux，Docker 26.1.5；
-- 只读检查，不改配置。
+- 只读检查，不改配置；
+- 网络：host-only + intnet，无 NAT；权限：sudo 只读；未改快照。
 
 ## 3. 假设
 
@@ -32,15 +33,16 @@ H1：socket 不应全局可写；H2：不应监听 2375/2376 明文端口。
 
 ## 5. 结果
 
-| 检查项 | 实际 | 结论 |
-|---|---|---|
-| socket 权限 | srw-rw---- root:docker | 通过 |
-| 2375/2376 | 未监听 | 通过 |
-| 安全选项 | apparmor、seccomp builtin、cgroupns | 记录 |
+| 检查项 | 预期 | 实际 | 结论 |
+|---|---|---|---|
+| socket 权限 | 仅 root/docker 可读写 | srw-rw---- root:docker | 通过 |
+| 2375/2376 | 不监听 | 未监听 | 通过 |
+| 安全选项 | 有 AppArmor/seccomp | apparmor、seccomp builtin、cgroupns | 记录 |
 
 ## 6. 证据
 
-- 证据文件：data/security/experiments/LAB-AUDIT-006/evidence.txt。
+- 证据文件：data/security/experiments/LAB-AUDIT-006/evidence.txt；
+- 原始输出：data/security/experiments/LAB-AUDIT-006/raw.txt（date 2026-10-24T14:55:25Z）。
 
 ## 7. 分析
 
