@@ -19,7 +19,7 @@ lib/media.js 的 resolveInner 对 file:// 开头的 ref.file 直接 copyFile(sou
 
 ## 影响
 
-若 NapCat 会把消息里的 file 字段原样传给插件，发送者可让 bot 复制本地任意可读文件到媒体目录，再可能被后续发送/读取。可达性未验证。
+若 NapCat 或事件源把消息里的 file 字段原样传给插件，可让 bot 复制本地任意可读文件到媒体目录。正常 NapCat 通常把图片 file 解析为本地缓存路径，不一定是 file://；要触发需要控制事件源或恶意 NapCat 实现。远程可达性未验证。
 
 ## 建议修复
 
