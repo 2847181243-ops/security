@@ -27,3 +27,4 @@ jobs:
           node scripts/detect_lolbin.mjs
           node scripts/detect_lsass.mjs
           node scripts/detect_comsvcs.mjs
+          node scripts/detect_spring4shell.mjs

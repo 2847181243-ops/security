@@ -1,0 +1,18 @@
+title: Spring4Shell classLoader Parameter
+id: "bfc76075-ced0-44ae-a300-c01eea596006"
+status: experimental
+description: Detects class.module.classLoader in web query strings (CVE-2022-22965).
+author: lead
+date: 2026/10/24
+logsource:
+  category: webserver
+detection:
+  selection:
+    cs-uri-query|contains: 'class.module.classLoader'
+  condition: selection
+falsepositives:
+  - Authorized tests
+level: critical
+tags:
+  - attack.initial_access
+  - cve.2022.22965
