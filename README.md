@@ -4,15 +4,15 @@
 
 ## 结构
 
-| 目录 | 内容 |
-|---|---|
-| docs/reports | 实验报告（模板 _模板.md，索引 索引.md） |
-| docs/intel | KEV/NVD/EPSS 情报简报 |
-| docs/cards | 漏洞卡（训练靶场/真实项目分开标注） |
-| docs/methodology | 靶场部署、隔离设计与应急方法 |
-| rules/sigma | Sigma 检测规则 |
-| rules/semgrep | 自写 Semgrep 规则 |
-| scripts | 检测规则等价验证脚本 |
+| 目录 | 内容 | 许可 |
+|---|---|---|
+| docs/reports | 实验报告（模板 _模板.md，索引 索引.md） | CC BY 4.0 |
+| docs/cards | 漏洞卡 | CC BY 4.0 |
+| docs/intel | KEV/NVD/EPSS 情报简报 | CC BY 4.0 |
+| docs/methodology | 靶场部署、隔离设计与应急方法 | CC BY 4.0 |
+| rules/sigma | Sigma 检测规则 | CC BY 4.0 |
+| rules/semgrep | 自写 Semgrep 规则 | CC BY 4.0 |
+| scripts | 检测规则等价验证脚本 | MIT |
 
 ## 范围
 
@@ -28,6 +28,7 @@
 
 ## 许可
 
-代码 MIT；文档与规则 CC BY 4.0。
+- 代码与脚本：MIT，见根目录 LICENSE；
+- 文档、报告、规则：CC BY 4.0，见 docs/LICENSE 与 rules/LICENSE。
 
 仅用于授权的安全实验。未授权扫描或攻击他人系统违法。
