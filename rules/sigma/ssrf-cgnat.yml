@@ -1,0 +1,18 @@
+title: SSRF to CGNAT Range
+id: "9ec4cca9-b6e1-45c5-9dde-beabc03915ca"
+status: experimental
+description: Detects SSRF parameters pointing at 100.64.0.0/10 (CGNAT).
+author: lead
+date: 2026/10/25
+logsource:
+  category: webserver
+detection:
+  selection:
+    cs-uri-query|re: '100\.(6[4-9]|[7-9][0-9]|1[01][0-9]|12[0-7])\.'
+  condition: selection
+falsepositives:
+  - Authorized tests
+level: medium
+tags:
+  - attack.initial_access
+  - attack.t1190

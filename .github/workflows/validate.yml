@@ -40,3 +40,4 @@ jobs:
           node scripts/detect_struts.mjs
           node scripts/detect_tomcat_put.mjs
           node scripts/detect_jenkins_cli.mjs
+          node scripts/detect_cgnat.mjs
