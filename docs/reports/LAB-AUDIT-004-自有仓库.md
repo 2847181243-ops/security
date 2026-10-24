@@ -45,6 +45,7 @@ H1：仓库小，可能有 GitHub Actions 可变 tag；H2：无运行时代码�
 
 - 证据文件：data/security/experiments/LAB-AUDIT-004/evidence.txt；
 - JSON：data/security/semgrep-lab-notes.json（修复后扫描，results=0；修复前 2 条命中见 evidence.txt）；
+- 密钥扫描：gitleaks 8.28.0，扫 167,588 字节，no leaks found；
 - 修复：.github/workflows/validate.yml 两个 uses 改为 40 位 SHA。
 
 ## 7. 分析
