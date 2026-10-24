@@ -1,0 +1,32 @@
+title: Suspicious LOLBin Download or Script Execution
+id: 6f1c2a9e-lab-0009
+status: experimental
+description: Detects certutil/rundll32/mshta used with remote or script arguments.
+author: lead
+date: 2026/10/24
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  certutil:
+    Image|endswith: '\\certutil.exe'
+    CommandLine|contains:
+      - '-urlcache'
+      - '-split'
+      - 'http'
+  rundll32:
+    Image|endswith: '\\rundll32.exe'
+    CommandLine|contains:
+      - 'javascript:'
+      - 'http'
+  mshta:
+    Image|endswith: '\\mshta.exe'
+    CommandLine|contains: 'http'
+  condition: certutil or rundll32 or mshta
+falsepositives:
+  - Admin scripts downloading from internal HTTPS
+level: high
+tags:
+  - attack.defense_evasion
+  - attack.t1218
+  - attack.t1105
