@@ -1,0 +1,14 @@
+[
+  {
+    "Image": "C:\\Windows\\System32\\rundll32.exe",
+    "CommandLine": "rundll32.exe C:\\Windows\\System32\\comsvcs.dll MiniDump 1234 C:\\lab\\lsass.dmp full"
+  },
+  {
+    "Image": "C:\\Windows\\System32\\rundll32.exe",
+    "CommandLine": "rundll32.exe shell32.dll,Control_RunDLL"
+  },
+  {
+    "Image": "C:\\Windows\\System32\\notepad.exe",
+    "CommandLine": "notepad.exe comsvcs.dll MiniDump"
+  }
+]

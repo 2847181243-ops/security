@@ -26,3 +26,4 @@ jobs:
           node scripts/detect_persistence.mjs
           node scripts/detect_lolbin.mjs
           node scripts/detect_lsass.mjs
+          node scripts/detect_comsvcs.mjs
