@@ -9,7 +9,9 @@ logsource:
 detection:
   selection:
     cs-method: PUT
-    cs-uri-stem|endswith: '.jsp'
+    cs-uri-stem|endswith:
+      - '.jsp'
+      - '.jsp/'
   condition: selection
 falsepositives:
   - Authorized WebDAV uploads

@@ -20,7 +20,10 @@
 - 宿主 Windows，Tomcat 8.5.19，struts2-showcase 2.3.28，端口 8085；
 - DMI 在 struts.xml 中为 true；
 - 回调监听 127.0.0.1:9999，只记录请求，不接收数据；
-- 执行命令固定为 curl 回调，不做 shell、不落文件。
+- 执行命令固定为 curl 回调，不做 shell、不落文件；
+- 隔离：宿主本地端口 8085，只在本机验证，未测外部暴露；
+- 权限：普通用户运行，无提权；测试后 Tomcat 已停止；
+- 快照：未用 VM 快照（宿主临时进程）。
 
 ## 3. 假设
 
@@ -37,7 +40,7 @@ H1：method: 前缀可注入 OGNL；H2：OGNL 能执行固定命令。
 
 | 检查项 | 预期 | 实际 | 结论 |
 |---|---|---|---|
-| 首页 | 200 | 200 | 通过 |
+| 首页 | 200 | 200（Tomcat 日志 Server startup，见 lab/struts/apache-tomcat-8.5.19/logs） | 通过 |
 | 回调 | 收到 /s2 | HIT GET /s2 | 通过 |
 | 响应 | 可能 500 | HTTP 500，9,041 字节 | 记录 |
 
@@ -53,7 +56,7 @@ H1：method: 前缀可注入 OGNL；H2：OGNL 能执行固定命令。
 
 ## 8. 风险与影响
 
-DMI 开启时 method: 前缀可 RCE；CVSS 8.1，KEV 2026-10-08 收录。靶场只在宿主回环。
+DMI 开启时 method: 前缀可 RCE；CVSS 8.1 来自 NVD，KEV 加入日期 2026-10-08 来自 CISA KEV JSON。靶场只在宿主回环。
 
 ## 9. 修复与后续
 

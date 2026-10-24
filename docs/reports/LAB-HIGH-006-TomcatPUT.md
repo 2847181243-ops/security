@@ -19,7 +19,10 @@
 
 - 宿主 Windows，Tomcat 7.0.79，端口 8086；
 - conf/web.xml 的 DefaultServlet 设 readonly=false（漏洞前提）；
-- 只写回显 put-poc-ok 的 JSP，不写命令后门。
+- 只写回显 put-poc-ok 的 JSP，不写命令后门；
+- 隔离：宿主本地端口 8086，只在本机验证；
+- 权限：普通用户运行，无提权；测试后 Tomcat 已停止；
+- 快照：未用 VM 快照（宿主临时进程）。
 
 ## 3. 假设
 
@@ -41,7 +44,7 @@ H1：PUT /1.jsp/ 可绕过后缀检查；H2：写入的 JSP 能执行。
 
 ## 6. 证据
 
-- 证据文件：data/security/experiments/CVE-2017-12615/evidence.txt；
+- 证据文件：data/security/experiments/LAB-HIGH-006/evidence.txt；
 - 请求脚本：lab/tomcat7/test_put.mjs；
 - JSP 只回显固定字符串。
 

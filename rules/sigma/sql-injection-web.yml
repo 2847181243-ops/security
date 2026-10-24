@@ -13,6 +13,8 @@ detection:
       - "%27%20or%20"
       - "UNION%20SELECT"
       - "union%20select"
+      - "%2527%2520OR%2520"
+      - "%2527%2520or%2520"
   selection_plain:
     cs-uri-query|contains:
       - "' OR '"

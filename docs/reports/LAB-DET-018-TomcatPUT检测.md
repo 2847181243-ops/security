@@ -17,7 +17,7 @@
 
 ## 2. 范围与环境
 
-- 规则：docs/security/detections/tomcat-put-jsp.yml；
+- 规则：docs/security/detections/tomcat-put-jsp.yml（endswith 支持 .jsp 与 .jsp/）；
 - 脚本：runtime/security/detect_tomcat_put.mjs；
 - 样本：3 行访问日志（PUT /1.jsp/、GET /1.jsp、PUT /readme.txt）。
 
@@ -45,7 +45,8 @@ hits=1 total=3。
 
 - 证据文件：data/security/experiments/LAB-DET-018/evidence.txt；
 - 规则：docs/security/detections/tomcat-put-jsp.yml；
-- 脚本：runtime/security/detect_tomcat_put.mjs。
+- 脚本：runtime/security/detect_tomcat_put.mjs；
+- Sigma：files=16 ok=16；SPL 为 cs-method=PUT、cs-uri-stem IN (*.jsp, *.jsp/)。
 
 ## 7. 分析
 
