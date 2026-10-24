@@ -24,7 +24,7 @@
 
 ## 3. 假设
 
-H1：编码后的 jndi ldap URL 能命中；H2：普通搜索不命中。
+H1：编码后的 jndi ldap URL 能命中；H2：普通搜索不命中；明文 jndi 形式未单独构造，不算已验证。
 
 ## 4. 步骤
 
@@ -49,7 +49,7 @@ hits=1 total=2。
 
 ## 7. 分析
 
-事实：编码 payload 命中，普通查询不命中；pySigma 解析 13/13。推断：JNDI 也可能出现在 header/body，当前只覆盖 query。
+事实：编码 payload 命中，普通查询不命中；现跑 pySigma 13/13 通过（输出见 evidence）。推断：JNDI 也可能出现在 header/body，当前只覆盖 query。
 
 ## 8. 风险与影响
 

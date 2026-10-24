@@ -13,7 +13,7 @@
 
 ## 1. 目标
 
-用 YARA 4.5.2 跑自写规则，验证行业规则引擎的命中/未命中行为，并与关键字扫描对比。
+用 YARA 4.5.2 跑自写规则，验证行业规则引擎的命中/未命中行为。
 
 ## 2. 范围与环境
 
@@ -39,16 +39,18 @@ H1：含全部关键字的测试文件命中两条规则；H2：普通 PE 不命
 | yara-test.txt | 2 条 | 字符串偏移 0x0/0xb/0x10/0x21/0x40 |
 | yara-suspicious.txt | 0 | 缺 FromBase64String，all-of 不满足 |
 | notepad.exe | 0 | 无关键字 |
+| System32 前 12 个 exe | 0 | 误报测试，SCANNED=12 HITS=0 |
 
 ## 6. 证据
 
 - 证据文件：data/security/experiments/LAB-DET-005/evidence.txt；
 - 规则：rules/yara/lab-suspicious.yar；
-- 输出：yara-test 命中 Suspicious_PowerShell_Encoded、Ransomware_Note_Strings；其余两文件无输出。
+- 输出：yara-test 命中 Suspicious_PowerShell_Encoded、Ransomware_Note_Strings；其余文件无输出；
+- 误报测试：System32 前 12 个 exe，SCANNED=12 HITS=0。
 
 ## 7. 分析
 
-事实：YARA 按规则条件命中，测试文件两条全中；缺一个关键字的文件不命中。推断：all-of 规则比关键字扫描严格，误报低但漏报高；规则置信度标 low。
+事实：YARA 按规则条件命中；测试文件两条全中，缺一个关键字的文件不命中；12 个系统 exe 0 命中。推断：all-of 规则比单关键字匹配严格，误报低但漏报高；规则置信度标 low。
 
 ## 8. 风险与影响
 

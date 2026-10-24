@@ -13,7 +13,7 @@
 
 ## 1. 目标
 
-用 Semgrep OWASP 规则扫本地项目 <local-project>，逐条判断命中是否真实风险。
+用 Semgrep OWASP 规则扫本地项目 D:\bloodborne-seamless-coop，逐条判断命中是否真实风险。
 
 ## 2. 范围与环境
 

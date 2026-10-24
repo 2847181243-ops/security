@@ -18,7 +18,7 @@
 ## 2. 范围与环境
 
 - pySigma（pip 安装）与解析脚本 runtime/security/sigma_validate.py；
-- 目标：docs/security/detections/*.yml，共 10 条规则；
+- 目标：docs/security/detections/*.yml，实验时 10 条（现 13 条）；
 - 只解析，不执行后端查询。
 
 ## 3. 假设
@@ -35,7 +35,7 @@ H1：规则能被 SigmaCollection 解析；H2：id 必须是 UUID。
 
 | 检查项 | 预期 | 实际 | 结论 |
 |---|---|---|---|
-| 解析 | 10 条通过 | files=10 ok=10 bad=0 | 通过 |
+| 解析 | 实验时 10 条通过 | files=10 ok=10 bad=0（现 13/13） | 通过 |
 | id | UUID | 10 个 UUID | 通过 |
 
 ## 6. 证据
@@ -45,7 +45,7 @@ H1：规则能被 SigmaCollection 解析；H2：id 必须是 UUID。
 
 ## 7. 分析
 
-事实：10 条规则均被 pySigma 解析。推断：语法层可用，但后端查询语义/误报仍需真实数据验证；之前 id 非 UUID，解析会失败，已统一改成 UUID。
+事实：实验时 10 条规则均被 pySigma 解析（后续新增到 13 条）。推断：语法层可用，但后端查询语义/误报仍需真实数据验证；之前 id 非 UUID，解析会失败，已统一改成 UUID。
 
 ## 8. 风险与影响
 
