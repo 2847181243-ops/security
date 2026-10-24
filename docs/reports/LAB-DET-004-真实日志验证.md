@@ -17,7 +17,7 @@
 
 ## 2. 范围与环境
 
-- 从宿主机经 host-only SSH（192.0.2.30）进 lab-linux；
+- 从宿主机经 host-only SSH 进 lab-linux（管理地址脱敏）；
 - 取 `docker logs --since 4h dvwa` 中含 sqli/xss_r 的 30 行；
 - 用 detect_web_sqli.mjs / detect_web_xss.mjs 匹配。
 
@@ -27,7 +27,7 @@ H1：真实攻击请求能被规则命中；H2：正常请求不被误报。
 
 ## 4. 步骤
 
-1. 修复 host-only 路由（加 169.254.78.0/24 dev enp0s8），SSH 打通；
+1. 修复 host-only 路由（给管理口加更具体的 /24 路由），SSH 打通；
 2. 导出日志到 data/security/detections/live-dvwa.log；
 3. 跑两条规则，查看 ALERT 行。
 
@@ -35,15 +35,15 @@ H1：真实攻击请求能被规则命中；H2：正常请求不被误报。
 
 | 规则 | 命中 | 说明 |
 |---|---|---|
-| SQLi | 2 | 两行真实 `id=1%27%20OR%20%271%27%3D%271` 请求 |
+| SQLi | 4 | 去重后 30 行里 4 行真实 `id=1%27%20OR%20%271%27%3D%271` 请求 |
 | XSS | 1 | 一行真实 `name=%3Cscript%3Ealert(1)%3C%2Fscript%3E` |
-| 误报 | 0 | 30 行里未命中正常请求/PHP notice |
+| 误报 | 0 | 分母 30 行（sort -u 去重后），未命中正常请求/PHP notice |
 
 ## 6. 证据
 
-- 日志：data/security/detections/live-dvwa.log（30 行，含真实请求）；
-- 输出：SQLi hits=2 total=30；XSS ALERT 1 行；
-- 客户端地址 192.0.2.20 为 Windows 靶场。
+- 日志：data/security/detections/live-dvwa.log（30 行，sort -u 去重；含真实请求）；
+- 输出：SQLi hits=4 total=30；XSS hits=1 total=30；
+- 客户端地址为 Windows 靶场（脱敏）。
 
 ## 7. 分析
 

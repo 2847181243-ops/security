@@ -17,7 +17,7 @@
 
 ## 2. 范围与环境
 
-- 目标：DVWA 1.10，http://192.0.2.10:8080（脱敏地址）；
+- 目标：DVWA 1.10，http://192.0.2.10:8080（脱敏地址；脚本实际访问 labnet 地址，见证据）；
 - 攻击机：lab-win，PowerShell WebRequestSession；
 - 只打本地靶场。
 
@@ -37,12 +37,13 @@ H1：name 参数未编码，脚本原样回显。
 
 | 检查项 | 预期 | 实际 | 结论 |
 |---|---|---|---|
-| 回显原始脚本 | 出现 script 标签 | XSS_REFLECTED | 通过 |
+| 回显原始脚本 | 出现 script 标签 | HTTP=200，REFLECT_LINE=<pre>Hello <script>alert(1)</script></pre> | 通过 |
 
 ## 6. 证据
 
-- 脚本：lab/win_dvwa_xss.ps1；
-- 输出：XSS_REFLECTED。
+- 证据文件：data/security/experiments/LAB-PT-002/evidence.txt；
+- 脚本：lab/win_dvwa_xss_evidence.ps1；
+- 输出：HTTP=200、REFLECT_LINE=<pre>Hello <script>alert(1)</script></pre>。
 
 ## 7. 分析
 

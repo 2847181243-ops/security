@@ -17,7 +17,7 @@
 
 ## 2. 范围与环境
 
-- Semgrep 1.182.1，规则 p/owasp-top-ten，181 条规则、300 个文件；
+- Semgrep 1.182.1，规则 p/owasp-top-ten，300 个文件（规则数未在 JSON 记录）；
 - 只读扫描，未改项目代码。
 
 ## 3. 假设
@@ -41,12 +41,12 @@ H1：能找到供应链/命令执行类问题；H2：命中需要人工复核，
 
 ## 6. 证据
 
-- JSON：data/security/semgrep-bloodborne.json；
+- JSON：data/security/semgrep-bloodborne.json（另有 12 条解析/告警未列入本报告表）；
 - 代码上下文：check_ruleset_drift.py 80-106、fetch_pr.py 78-94。
 
 ## 7. 分析
 
-事实：13 个 workflow 用 tag/branch 引用 action；2 个 subprocess.run 用列表参数。推断：subprocess 命中是 Semgrep 对 tainted env 的保守规则，实际无 shell 注入；可变 tag 是真实供应链风险，但需要仓库写权限才能利用。
+事实：7 个 workflow 文件里共 13 处用 tag/branch 引用 action；2 个 subprocess.run 用列表参数。推断：subprocess 命中是 Semgrep 对 tainted env 的保守规则，实际无 shell 注入；可变 tag 是真实供应链风险，但需要仓库写权限才能利用。
 
 ## 8. 风险与影响
 

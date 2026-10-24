@@ -17,7 +17,7 @@
 
 ## 2. 范围与环境
 
-- 目标：DVWA 1.10 /vulnerabilities/exec/；
+- 目标：DVWA 1.10 /vulnerabilities/exec/，labnet 主机 192.0.2.10:8080（脱敏）；
 - 攻击机：lab-win PowerShell 会话；
 - 只打本地靶场。
 
@@ -36,12 +36,13 @@ H1：ip 参数拼接进 shell 命令，可用分号追加命令。
 
 | 检查项 | 预期 | 实际 | 结论 |
 |---|---|---|---|
-| 执行 id | 返回 uid= | CMD_INJECTION_OK | 通过 |
+| 执行 id | 返回 uid= | HTTP=200，uid=33(www-data) | 通过 |
 
 ## 6. 证据
 
-- 脚本：lab/win_dvwa_cmd2.ps1；
-- 输出：CMD_INJECTION_OK。
+- 证据文件：data/security/experiments/LAB-PT-003/evidence.txt；
+- 脚本：lab/win_dvwa_cmd_evidence.ps1；
+- 输出：HTTP=200、UID_LINE=uid=33(www-data)。
 
 ## 7. 分析
 

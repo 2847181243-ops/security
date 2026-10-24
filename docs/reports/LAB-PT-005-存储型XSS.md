@@ -17,7 +17,7 @@
 
 ## 2. 范围与环境
 
-- 目标：DVWA /vulnerabilities/xss_s/；
+- 目标：DVWA /vulnerabilities/xss_s/，labnet 主机 192.0.2.10:8080（脱敏）；
 - 攻击机：lab-win PowerShell 会话；
 - 只打本地靶场。
 
@@ -30,18 +30,20 @@ H1：留言内容未编码，写入后页面直接渲染脚本。
 1. 登录 admin，security=low；
 2. 取 xss_s 页面 user_token；
 3. POST txtName=tester、mtxMessage=<script>alert(1)</script>、btnSign=Sign Guestbook、user_token；
-4. 检查响应是否含原始脚本。
+4. 再 GET 一次页面，确认脚本已存储并再次渲染。
 
 ## 5. 结果
 
 | 检查项 | 预期 | 实际 | 结论 |
 |---|---|---|---|
-| 回显脚本 | 原始 script | STORED_XSS_OK | 通过 |
+| POST 后回显 | 原始 script | STORED_XSS_OK | 通过 |
+| 二次 GET 仍在 | 脚本仍在页面 | STORED_CONFIRMED=True | 通过 |
 
 ## 6. 证据
 
-- 脚本：lab/win_dvwa_stored.ps1；
-- 输出：STORED_XSS_OK。
+- 证据文件：data/security/experiments/LAB-PT-005/evidence.txt；
+- 脚本：lab/win_dvwa_stored_evidence.ps1；
+- 输出：POST_HTTP=200、GET_HTTP=200、STORED_CONFIRMED=True。
 
 ## 7. 分析
 

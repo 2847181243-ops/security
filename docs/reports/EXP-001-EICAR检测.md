@@ -47,7 +47,7 @@
 
 - 命令输出：stage0 脚本 stdout（file_exists=True、ThreatID 2147519003、RealTimeProtectionEnabled=True）；
 - 文件：`data/security/experiments/EXP-001/record.md`；
-- 快照：baseline-clean UUID 598aefbc-d8f1-4c42-a4dc-31202054cbd8。
+- 快照：record.md 记 baseline-win11 UUID 1212275b…；后续已重建为 baseline-clean，当前 lab-win.vbox 只剩 weblab-base，旧 UUID 未能再核对（状态保留，证据以 record.md 为准）。
 
 ## 7. 分析
 

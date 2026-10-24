@@ -9,7 +9,7 @@
 | 执行 | lead（AI） |
 | 分类 | 静态审计 |
 | 风险级别 | 低 |
-| 状态 | 完成 |
+| 状态 | 部分完成 |
 
 ## 1. 目标
 
@@ -18,7 +18,7 @@
 ## 2. 范围与环境
 
 - 宿主 Windows，Semgrep 1.182.1（Python 3.14 wheel，路径 Scripts\semgrep.exe）；
-- 目标：<workspace>\repos、<workspace>\lab\webapp；
+- 目标：<workspace>/repos、<workspace>/lab/webapp；
 - 只读扫描，不执行目标代码。
 
 ## 3. 假设
@@ -36,7 +36,7 @@ H1：Semgrep 能在本机跑；H2：基线应给出可解释的命中或 0 命�
 | 检查项 | 预期 | 实际 | 结论 |
 |---|---|---|---|
 | 工具可用 | 版本号 | 1.182.1 | 通过 |
-| OWASP 规则 | 跑完 | 220 条规则、39 个文件、0 findings | 通过 |
+| OWASP 规则 | 跑完 | 39 个文件、0 findings（规则数未在 JSON 记录） | 通过 |
 | 自写规则 | 命中已知模式 | 0 findings（taint 未穿透包装函数） | 未通过 |
 
 ## 6. 证据

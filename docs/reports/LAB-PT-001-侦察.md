@@ -18,7 +18,7 @@
 ## 2. 范围与环境
 
 - 攻击机：lab-win（Windows 11）；
-- 目标：lab-linux 192.0.2.10，仅 labnet；
+- 目标：lab-linux（脱敏地址 192.0.2.10），仅 labnet；
 - 授权：本机靶场，未扫任何外部地址。
 
 ## 3. 假设
@@ -40,13 +40,13 @@ H1：8080/3000 开放；H2：能读到 Server 头。
 
 ## 6. 证据
 
-- 脚本：lab/win_portscan.ps1；
-- 输出：8080 OPEN 302 Apache/2.4.25；3000 OPEN 200；
-- nmap.out 0 字节，nmap.exe 存在但无输出。
+- 证据文件：data/security/experiments/LAB-PT-001/evidence.txt；
+- nmap 证据：data/security/experiments/LAB-PT-001/nmap.out（0 字节）；
+- 脚本：lab/win_portscan.ps1，只探 8080/3000。
 
 ## 7. 分析
 
-事实：两个端口开放，8080 泄露 Apache 版本。推断：DVWA 镜像较旧（Apache 2.4.25、PHP 7.0.30），存在已知旧组件风险，但未验证可利用性。
+事实：两个端口开放，8080 泄露 Apache/2.4.25。推断：旧组件可能有已知漏洞，但未验证可利用性；PHP 版本没有证据，不作结论。
 
 ## 8. 风险与影响
 

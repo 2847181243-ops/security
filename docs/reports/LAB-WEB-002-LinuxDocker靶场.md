@@ -9,7 +9,7 @@
 | 执行 | lead（AI） |
 | 分类 | 靶场部署 |
 | 风险级别 | 中 |
-| 状态 | 完成 |
+| 状态 | 部分完成 |
 
 ## 1. 目标
 
@@ -28,44 +28,46 @@ H1：两个容器能启动并响应；H2：切回 labnet 后仍可访问。
 ## 4. 步骤
 
 1. 文本安装 Debian，建 lab 用户；
-2. 临时 NAT，配置 192.0.2.200/24，apt 安装 docker.io/compose；
+2. 临时 NAT，配置过渡地址，apt 安装 docker.io/compose；
 3. 拉镜像，docker run dvwa(8080)/juice(3000)；
 4. 验证 HTTP；
-5. 设置容器 restart=always，切回 intnet/labnet 静态 192.0.2.100。
+5. 设置容器 restart=always；计划切回 intnet/labnet 静态地址（报告时静态互通未完成）。
 
 ## 5. 结果
 
 | 检查项 | 预期 | 实际 | 结论 |
 |---|---|---|---|
 | Docker | active | active | 通过 |
-| DVWA | 可访问 | 302（setup 跳转） | 通过 |
+| DVWA | 可访问 | 302（建库前 setup 跳转） | 通过 |
 | Juice Shop | 可访问 | 200 | 通过 |
-| labnet 互通 | Windows 能访问 | ping 192.0.2.10 通；8080=200、3000=200 | 通过 |
+| link-local 互通 | Windows 能访问 | 建库后 8080=200、3000=200（nic2=hostonly 承载） | 通过 |
+| labnet 静态互通 | Windows 能访问 | 未完成（Windows 侧静态 IP 需管理员） | 未完成 |
 
 ## 6. 证据
 
-- `docs/security/Web靶场Linux.md`；
-- 快照 weblab-linux UUID f5bb3124-61b1-42c2-9b47-5af56b1c965d；
-- 容器：dvwa 8080、juice 3000，restart=always。
+- docs/security/Web靶场Linux.md；
+- 网络：data/security/experiments/LAB-WEB-002/network.txt（nic1=intnet/labnet、nic3=none）；
+- 快照：data/security/experiments/LAB-WEB-002/snapshots.txt；
+- 容器：data/security/experiments/LAB-WEB-002/containers.txt（dvwa/juice restart=always）。
 
 ## 6.1 互通方法
 
-Windows 侧配静态 IP 被 UAC 拦；改用 link-local：Windows APIPA 192.0.2.20/16，Linux 加 192.0.2.10/16，同网段直连成功。
+Windows 侧配静态 IP 被 UAC 拦；改用 link-local：Windows APIPA 与 Linux link-local 同段直连成功。
 
 ## 7. 分析
 
-镜像直连 Docker Hub 超时，镜像站可用；Windows 侧静态 IP 需要管理员权限，guestcontrol 默认非提权，导致互通未完成。
+镜像直连 Docker Hub 超时，镜像站可用；link-local 访问成功。Windows 侧静态 IP 需要管理员权限，guestcontrol 默认非提权，labnet 静态互通未完成。
 
 ## 8. 风险与影响
 
-靶场含故意漏洞，必须只在隔离网络；临时 NAT 期间有外网，完成后已切回 labnet。
+靶场含故意漏洞，必须只在隔离网络；临时 NAT 已撤（nic3=none），当前 link-local 可达，labnet 静态互通仍未完成。
 
 ## 9. 修复与后续
 
-- 立即动作：确认 labnet 内 Linux 192.0.2.100 可达（待 Windows 侧网络配置）；
+- 立即动作：确认 labnet 静态路由可达（待 Windows 侧网络配置）；
 - 长期动作：用 host-only DHCP 或提权方式配置 Windows IP；
-- 未解决：DVWA 各漏洞模块的练习记录（下一步）。
+- 未解决：labnet 静态互通；DVWA 建库与登录见 LAB-WEB-003。
 
 ## 10. 结论
 
-通过：容器、跨 VM 访问、DVWA 建库与 admin/<redacted> 登录全部实测成功。
+部分完成：容器运行和 link-local 访问通过；labnet 静态互通未完成，DVWA 建库/登录见 LAB-WEB-003。

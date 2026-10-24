@@ -9,7 +9,7 @@
 | 执行 | lead（AI） |
 | 分类 | 渗透测试 / Web |
 | 风险级别 | 中（本地靶场） |
-| 状态 | 完成 |
+| 状态 | 部分完成 |
 
 ## 1. 目标
 
@@ -30,22 +30,22 @@ H1：/fetch 可访问应用自身 internal 端点；H2：可访问 labnet 其他
 1. 给 server.mjs 加 /fetch?url= 与 /metadata；
 2. 重启 Node；
 3. 请求 /fetch?url=http://127.0.0.1:8099/metadata；
-4. 请求 /fetch?url=http://192.0.2.10:8080/ 等三个端口。
+4. 请求 /fetch?url=http://192.0.2.10:8080/ 与 :3000/（证据里是脱敏后的 URL）。
 
 ## 5. 结果
 
 | 目标 | 预期 | 实际 | 结论 |
 |---|---|---|---|
-| /metadata | 返回 internal secret | {"role":"internal","secret":"lab-only"} | 通过 |
-| DVWA 8080 | 200 | 200 | 通过 |
-| Juice 3000 | 200 | 200 | 通过 |
-| CVE 8081 | 200 | 200 | 通过 |
+| /metadata | 返回 internal secret | 200，{"role":"internal","secret":"lab-only"} | 通过 |
+| DVWA 8080 | 200 | 200，正文为空；仅证明可达，未证明内容 | 部分 |
+| Juice 3000 | 200 | 200，返回 Juice Shop HTML | 通过 |
+| CVE 8081 | 200 | 未验证（ERR，推断容器未运行） | 未完成 |
 
 ## 6. 证据
 
-- 脚本：lab/win_ssrf_test3.ps1；
-- 输出：四个 URL 均 200；
-- /metadata 返回 lab-only secret。
+- 证据文件：data/security/experiments/LAB-PT-008/evidence.txt；
+- 脚本：lab/win_ssrf_evidence.ps1；
+- 输出：self-root 200、metadata 200（secret=lab-only）、dvwa-8080 200、juice-3000 200；cve-8081 ERR，记为未验证。
 
 ## 7. 分析
 
@@ -63,4 +63,4 @@ SSRF 可做内网探测和横向入口；靶场隔离。
 
 ## 10. 结论
 
-完成：SSRF 复现。
+部分完成（CVE 8081 未验证）：SSRF 复现。

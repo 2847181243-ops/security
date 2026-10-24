@@ -1,5 +1,5 @@
 import fs from "node:fs";
-const p=process.argv[2]||"tests/sample-ssrf.log";
+const p = process.argv[2] || "tests/sample-ssrf.log";
 const lines=fs.readFileSync(p,"utf8").split(/\r?\n/).filter(Boolean);
 let hits=0;
 for(const line of lines){

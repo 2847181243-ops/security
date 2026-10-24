@@ -17,7 +17,7 @@
 
 ## 2. 范围与环境
 
-- 目标：Juice Shop 容器，http://192.0.2.10:3000；
+- 目标：Juice Shop 容器，http://192.0.2.10:3000（证据里的目标地址已脱敏）；
 - 攻击机：lab-win PowerShell；
 - 只打本地靶场，未使用返回的令牌访问其他资源。
 
@@ -29,20 +29,20 @@ H1：登录接口把 email 拼进 SQL，可用 OR 绕过。
 
 1. POST /rest/user/login；
 2. body：{"email":"' OR 1=1--","password":"x"}；
-3. 检查返回是否包含 authentication 令牌。
+3. 检查返回是否包含 authentication 令牌，并解码 JWT payload 看身份。
 
 ## 5. 结果
 
 | 检查项 | 预期 | 实际 | 结论 |
 |---|---|---|---|
 | HTTP 状态 | 200 | 200 | 通过 |
-| 返回 JWT | 有 | JWT_RETURNED，属于 admin 用户 | 通过 |
+| 返回 JWT | 有 | TOKEN_PRESENT=True；payload 中 email=admin@juice-sh.op、role=admin | 通过 |
 
 ## 6. 证据
 
-- 脚本：lab/win_juice_sqli.ps1；
-- 输出：STATUS=200、JWT_RETURNED；
-- 令牌内容未写入报告。
+- 证据文件：data/security/experiments/LAB-PT-004/evidence.txt；
+- 脚本：lab/win_juice_sqli_evidence.ps1；
+- 输出：HTTP=200、TOKEN_PRESENT=True、PAYLOAD 含 email=admin@juice-sh.op、role=admin；令牌原文未写入报告。
 
 ## 7. 分析
 
@@ -60,4 +60,4 @@ H1：登录接口把 email 拼进 SQL，可用 OR 绕过。
 
 ## 10. 结论
 
-完成：登录 SQL 注入复现。
+通过：登录 SQL 注入复现。

@@ -1,5 +1,5 @@
 import fs from "node:fs";
-const p=process.argv[2]||"tests/sample-cve-2021-41773.log";
+const p = process.argv[2] || "tests/sample-cve-2021-41773.log";
 const pats=[/\.%2e/i,/%2e%2e/i,/\.%2E/];
 const lines=fs.readFileSync(p,"utf8").split(/\r?\n/).filter(Boolean);
 let hits=0;

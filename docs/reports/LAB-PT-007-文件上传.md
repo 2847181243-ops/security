@@ -17,7 +17,7 @@
 
 ## 2. 范围与环境
 
-- 目标：DVWA /vulnerabilities/upload/；
+- 目标：DVWA /vulnerabilities/upload/，labnet 主机 192.0.2.10:8080（脱敏）；
 - 攻击机：lab-win，curl + cookie；
 - 上传内容：只回显 upload-ok 的 PHP，不是后门。
 
@@ -37,14 +37,15 @@ H1：无扩展名/类型校验，PHP 可上传；H2：uploads 目录可执行 PH
 
 | 检查项 | 预期 | 实际 | 结论 |
 |---|---|---|---|
-| 上传 | 接受 | UPLOAD_ACCEPTED | 通过 |
-| 执行 | 输出 upload-ok | PHP_EXECUTED | 通过 |
+| 上传 | 接受 | UPLOAD_OK=True（响应含 succes，非 not uploaded） | 通过 |
+| 执行 | 输出 upload-evidence-ok | EXEC_BODY=upload-evidence-ok，PHP_EXECUTED=True | 通过 |
 
 ## 6. 证据
 
-- 脚本：lab/win_dvwa_upload.ps1；
-- 输出：UPLOAD_ACCEPTED、PHP_EXECUTED；
-- 文件：/hackable/uploads/upload-test.php（只回显）。
+- 证据文件：data/security/experiments/LAB-PT-007/evidence.txt；
+- 脚本：lab/win_dvwa_upload_evidence.ps1；
+- 输出：UPLOAD_OK=True、EXEC_BODY=upload-evidence-ok；
+- 文件：/hackable/uploads/upload-evidence.php（只回显）。
 
 ## 7. 分析
 

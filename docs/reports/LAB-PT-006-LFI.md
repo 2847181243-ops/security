@@ -29,20 +29,20 @@ H1：page 参数拼接路径，可用 ../ 跳出 Web 根目录。
 
 1. 登录 admin，security=low；
 2. 取 fi 页面 user_token；
-3. 请求 page=../../../../../etc/passwd（5 层）；
+3. 请求 page=..%2F..%2F..%2F..%2F..%2Fetc%2Fpasswd（5 层，URL 编码）；
 4. 检查响应是否含 root:x:0:0。
 
 ## 5. 结果
 
 | 检查项 | 预期 | 实际 | 结论 |
 |---|---|---|---|
-| 读 /etc/passwd | 出现 root:x:0:0 | LFI_OK | 通过 |
+| 读 /etc/passwd | 出现 root:x:0:0 | HTTP=200，PASSWD_LINE=root:x:0:0:root:/root:/bin/bash | 通过 |
 
 ## 6. 证据
 
-- 脚本：lab/win_dvwa_lfi.ps1；
-- 输出：LFI_OK；
-- 4 层路径失败，5 层成功（路径深度差异）。
+- 证据文件：data/security/experiments/LAB-PT-006/evidence.txt；
+- 脚本：lab/win_dvwa_lfi_evidence.ps1；
+- 输出：HTTP=200，PASSWD_LINE=root:x:0:0:root:/root:/bin/bash。
 
 ## 7. 分析
 
@@ -60,4 +60,4 @@ H1：page 参数拼接路径，可用 ../ 跳出 Web 根目录。
 
 ## 10. 结论
 
-完成：LFI 复现。
+通过：LFI 复现。
