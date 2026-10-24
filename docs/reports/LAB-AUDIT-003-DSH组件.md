@@ -49,7 +49,7 @@ H1：解包后能正常扫描；H2：可能有路径/上传/鉴权类问题。
 
 ## 7. 分析
 
-事实：49 个文件被扫，0 命中，2 个错误都是 PartialParsing，位置在 dsh-api-workspace-files/lib/index.js。推断：OWASP 规则覆盖有限，0 命中不等于安全；该文件需人工看。
+事实：49 个文件被扫，0 命中，2 个错误都是 PartialParsing，位置在 dsh-api-workspace-files/lib/index.js。人工看了该文件：read/readBytes/stat 注释明确允许读 workspace 外文件（后端权限模型），list/changes 用 contains 限制目录在 workspace 内；未发现目录越权读。推断：OWASP 规则覆盖有限，0 命中不等于安全。
 
 ## 8. 风险与影响
 
