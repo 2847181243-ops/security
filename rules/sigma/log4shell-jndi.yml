@@ -1,0 +1,22 @@
+title: Log4Shell JNDI Lookup in Request
+id: "b86b6fc2-56db-490c-b133-31ea7616d2e0"
+status: experimental
+description: Detects JNDI lookup syntax associated with CVE-2021-44228.
+author: lead
+date: 2026/10/24
+logsource:
+  category: webserver
+detection:
+  selection:
+    cs-uri-query|contains:
+      - '${jndi:'
+      - '%24%7Bjndi'
+      - '${jndi%3A'
+  condition: selection
+falsepositives:
+  - Authorized tests
+  - Applications using JNDI in query strings
+level: critical
+tags:
+  - attack.initial_access
+  - cve.2021.44228

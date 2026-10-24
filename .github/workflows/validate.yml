@@ -28,3 +28,4 @@ jobs:
           node scripts/detect_lsass.mjs
           node scripts/detect_comsvcs.mjs
           node scripts/detect_spring4shell.mjs
+          node scripts/detect_log4shell.mjs
