@@ -49,7 +49,7 @@ H1：payload 触发 JNDI LDAP 连接；H2：不提供 LDAP 响应时无代码执
 
 ## 7. 分析
 
-事实：Log4j2 对 payload 发起了 LDAP 连接，JNDI 注入被触发。推断：补齐 LDAP 响应与远程类即可走到代码执行，但本轮未做；因此只算 JNDI 触发，不算完整 RCE。
+事实：Log4j2 对 payload 发起了 LDAP 连接，JNDI 注入被触发。推断：本机 JDK 8u511 默认关闭 trustURLCodebase，LDAP codebase 远程类不会加载；完整 RCE 需要本地 gadget 链，本轮未做，因此只算 JNDI 触发。
 
 ## 8. 风险与影响
 
@@ -59,7 +59,7 @@ JNDI 出站连接可被用于外带和远程类加载；生产环境要禁 looku
 
 - 升级 Log4j2 到修复版本；无法升级时关闭 JNDI/lookup；
 - 检测：日志/参数中的 jndi 语法；
-- 未解决：未做远程类加载与命令执行。
+- 未解决：未做远程类加载与命令执行；JDK 8u191+ 的 trustURLCodebase 限制是主要障碍。
 
 ## 10. 结论
 
