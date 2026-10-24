@@ -18,7 +18,7 @@
 
 - 报告 47 份，结构检查全 PASS；
 - 高危 CVE：CVE-2021-41773、CVE-2022-22965、CVE-2023-46604、CVE-2016-3081、CVE-2017-12615 已复现；CVE-2021-44228 到 JNDI 回调；
-- Sigma 规则 16 条，pySigma 解析 16/16；Splunk 后端编译 10/10（新增规则未编译）；
+- Sigma 规则 16 条，pySigma 解析 16/16；Splunk 后端编译 16/16；
 - 检测脚本 16 个，CI 跑全部等价验证；
 - 知识库 131 张，security 45 张；
 - 质量门：accept_reports.mjs + 独立 subagent 复审。
