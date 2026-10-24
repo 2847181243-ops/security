@@ -14,6 +14,15 @@
 | rules/semgrep | 自写 Semgrep 规则 | CC BY 4.0 |
 | scripts | 检测规则等价验证脚本 | MIT |
 
+## 当前状态（2026-10-24）
+
+- 报告 42 份，结构检查全 PASS；
+- 高危 CVE：CVE-2021-41773、CVE-2022-22965、CVE-2023-46604 已复现；CVE-2021-44228 到 JNDI 回调；
+- Sigma 规则 15 条，pySigma 解析 15/15，Splunk 后端编译 10/10；
+- 检测脚本 15 个，CI 跑全部等价验证；
+- 知识库 129 张，security 43 张；
+- 质量门：accept_reports.mjs + 独立 subagent 复审。
+
 ## 范围
 
 只记录授权范围内的本地实验：VirtualBox 隔离虚拟机、DVWA/Juice Shop、断网与快照回滚、针对本地靶场的渗透复现。
