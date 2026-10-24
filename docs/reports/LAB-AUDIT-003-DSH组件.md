@@ -59,7 +59,7 @@ H1：解包后能正常扫描；H2：可能有路径/上传/鉴权类问题。
 
 - 对关键控制器做人工代码审计；
 - 用动态请求测试鉴权/路径处理；
-- 未解决：dsh-api-workspace-files/lib/index.js 部分解析，未覆盖全部包。
+- 未解决：dsh-api-workspace-files/lib/index.js 部分解析，未覆盖全部包；client-connection 的 cookie 签名/比较实现被 DSH defend 判为 secret，当前通道读不到，未审。
 
 ## 10. 结论
 
