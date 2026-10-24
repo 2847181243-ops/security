@@ -8,6 +8,7 @@
 | LAB-HIGH-004 | CVE-2023-46604 | 完成（固定命令，uid=0） | data/security/experiments/CVE-2023-46604/evidence.txt |
 | LAB-HIGH-005 | CVE-2016-3081 | 完成（固定回调） | data/security/experiments/LAB-HIGH-005/evidence.txt |
 | LAB-HIGH-006 | CVE-2017-12615 | 完成（PUT 写 JSP） | data/security/experiments/LAB-HIGH-006/evidence.txt |
+| LAB-HIGH-007 | CVE-2024-23897 | 完成（CLI 文件读取） | data/security/experiments/CVE-2024-23897/evidence.txt |
 
 ## 使用约定
 
