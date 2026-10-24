@@ -1,5 +1,5 @@
 import fs from "node:fs";
-const p = "<workspace>/data/security/detections/sample-web.log";
+const p = process.argv[2] || "tests/sample-web.log";
 const patterns = [/%27%20OR%20/i, /UNION%20SELECT/i, /' OR '/i, /UNION SELECT/i];
 const lines = fs.readFileSync(p, "utf8").split(/\r?\n/).filter(Boolean);
 let hits = 0;

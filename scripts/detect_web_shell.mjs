@@ -1,5 +1,5 @@
 import fs from "node:fs";
-const ev = JSON.parse(fs.readFileSync("<workspace>/data/security/detections/sample-process.json","utf8"));
+const ev = JSON.parse(fs.readFileSync(process.argv[2] || "tests/sample-process.json","utf8"));
 const parents = ["/apache2","/httpd","/nginx"];
 const children = ["/sh","/bash","/dash"];
 let hits = 0;

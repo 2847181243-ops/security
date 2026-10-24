@@ -1,0 +1,18 @@
+name: validate
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate YAML
+        run: |
+          python -c "import yaml,glob,sys; [yaml.safe_load(open(p,encoding='utf-8')) for p in glob.glob('rules/sigma/*.yml')]; print('yaml ok')"
+      - name: Run detection tests
+        run: |
+          node scripts/detect_web_sqli.mjs
+          node scripts/detect_web_xss.mjs
+          node scripts/detect_web_shell.mjs
