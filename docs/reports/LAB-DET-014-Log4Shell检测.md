@@ -13,7 +13,7 @@
 
 ## 1. 目标
 
-为 CVE-2021-44228 的 JNDI 注入写检测规则，覆盖明文与 URL 编码两种形式。
+为 CVE-2021-44228 的 JNDI 注入写检测规则，验证 URL 编码形式；明文未单独构造。
 
 ## 2. 范围与环境
 
@@ -43,7 +43,7 @@ hits=1 total=2。
 
 ## 6. 证据
 
-- 证据文件：data/security/experiments/LAB-DET-014/evidence.txt；
+- 证据文件：data/security/experiments/LAB-DET-014/evidence.txt（IP 已脱敏）；
 - 规则：docs/security/detections/log4shell-jndi.yml；
 - 脚本：runtime/security/detect_log4shell.mjs。
 
@@ -63,4 +63,4 @@ hits=1 total=2。
 
 ## 10. 结论
 
-通过：JNDI 检测规则在合成日志上命中。
+部分完成：URL 编码形式命中，明文形式未验证。
