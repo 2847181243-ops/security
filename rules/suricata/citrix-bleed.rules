@@ -1,0 +1,1 @@
+alert http any any -> any any (msg:"CVE-2023-4966 Citrix Bleed probe"; flow:to_server,established; content:"/oauth/idp/.well-known/openid-configuration"; http_uri; classtype:attempted-recon; sid:202349660; rev:1;)
