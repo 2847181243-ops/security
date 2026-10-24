@@ -1,29 +1,32 @@
-# Security Lab Notes
+# security
 
-本仓库记录本地隔离靶场的安全实验、检测规则和漏洞研究笔记。
+本地隔离靶场的安全实验记录：报告、检测规则、漏洞情报与脚本。
+
+## 结构
+
+| 目录 | 内容 |
+|---|---|
+| docs/reports | 实验报告（模板 _模板.md，索引 索引.md） |
+| docs/intel | KEV/NVD/EPSS 情报简报 |
+| docs/methodology | 靶场部署、隔离设计与应急方法 |
+| rules/sigma | Sigma 检测规则 |
+| rules/semgrep | 自写 Semgrep 规则 |
+| scripts | 检测规则等价验证脚本 |
 
 ## 范围
 
-- 漏洞情报：CISA KEV、NVD、EPSS 的归一化与排序；
-- 靶场：VirtualBox 隔离虚拟机、DVWA/Juice Shop、断网与快照回滚；
-- 渗透测试：只针对本地靶场的侦察与复现；
-- 防守：Sigma 检测规则与等价验证脚本；
-- 报告：每次实验一份，模板在 `docs/reports/_模板.md`。
+只记录授权范围内的本地实验：VirtualBox 隔离虚拟机、DVWA/Juice Shop、断网与快照回滚、针对本地靶场的渗透复现。
 
 ## 不包含
 
-- 恶意样本、虚拟机磁盘、凭证、token、内网地址；
-- 任何针对第三方系统的扫描或攻击记录。
+恶意样本、虚拟机磁盘、凭证、token、内网地址、对第三方系统的扫描记录。
 
 ## 脱敏
 
-仓库里的目标地址统一替换为 TEST-NET（192.0.2.0/24），口令替换为 `<redacted>`，路径替换为 `<workspace>`。
+目标地址统一用 TEST-NET 192.0.2.0/24，口令用 <redacted>，路径用 <workspace>。
 
 ## 许可
 
-- 代码与脚本：MIT；
-- 文档与规则：CC BY 4.0，转载保留出处。
+代码 MIT；文档与规则 CC BY 4.0。
 
-## 声明
-
-仅用于授权的本地实验。未授权扫描、攻击他人系统违法。
+仅用于授权的安全实验。未授权扫描或攻击他人系统违法。
