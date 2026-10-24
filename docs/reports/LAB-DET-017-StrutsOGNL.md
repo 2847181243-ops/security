@@ -43,13 +43,14 @@ hits=1 total=2。
 
 ## 6. 证据
 
-- 证据文件：data/security/experiments/LAB-DET-017/evidence.txt；
+- 证据文件：data/security/experiments/LAB-DET-017/evidence.txt（含真实 access log 段）；
+- 真实日志：data/security/detections/struts-access.log；
 - 规则：docs/security/detections/struts-ognl.yml；
 - 脚本：runtime/security/detect_struts.mjs。
 
 ## 7. 分析
 
-事实：编码 payload 命中，正常请求不命中；pySigma 解析 15/15。推断：Struts2 的 payload 变体很多，单靠标记会漏；需要结合路径与响应。
+事实：编码 payload 命中，正常请求不命中；真实 Struts access log 4 行命中 2 条 payload；pySigma 解析 15/15（现 16/16）。推断：Struts2 的 payload 变体很多，单靠标记会漏；需要结合路径与响应。
 
 ## 8. 风险与影响
 
