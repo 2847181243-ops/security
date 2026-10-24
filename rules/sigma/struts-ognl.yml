@@ -1,0 +1,21 @@
+title: Apache Struts OGNL Injection Markers
+id: "977e5fd3-78e9-48e9-bb4f-264f9cd23ed0"
+status: experimental
+description: Detects OGNL/Struts2 exploitation markers in web query strings.
+author: lead
+date: 2026/10/24
+logsource:
+  category: webserver
+detection:
+  selection:
+    cs-uri-query|contains:
+      - '%24%7B%23'
+      - '#_memberAccess'
+      - 'ognl.OgnlContext'
+  condition: selection
+falsepositives:
+  - Authorized tests
+level: high
+tags:
+  - attack.initial_access
+  - cve.2016.3081
