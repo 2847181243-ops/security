@@ -41,9 +41,12 @@ H1：PUT + .jsp 命中；H2：GET 和普通 PUT 不命中。
 
 hits=1 total=3。
 
+真实 Tomcat access log（3 行）：`GET /` 与 `GET /1.jsp` 不报，`PUT /1.jsp/ 201` 命中，hits=1 total=3。
+
 ## 6. 证据
 
-- 证据文件：data/security/experiments/LAB-DET-018/evidence.txt；
+- 证据文件：data/security/experiments/LAB-DET-018/evidence.txt（含真实 Tomcat access log 段）；
+- 真实日志：data/security/detections/tomcat-put-access.log；
 - 规则：docs/security/detections/tomcat-put-jsp.yml；
 - 脚本：runtime/security/detect_tomcat_put.mjs；
 - Sigma：files=16 ok=16；SPL 为 cs-method=PUT、cs-uri-stem IN (*.jsp, *.jsp/)。
