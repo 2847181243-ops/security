@@ -14,6 +14,8 @@ detection:
       - "<script"
       - "onerror%3D"
       - "onerror="
+      - "%26%23x3c"
+      - "&#x3c;"
   condition: selection
 falsepositives:
   - Authorized security testing
