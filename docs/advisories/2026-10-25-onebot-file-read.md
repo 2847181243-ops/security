@@ -29,6 +29,8 @@ lib/media.js 的 resolveInner 对 file:// 开头的 ref.file 直接 copyFile(sou
 
 - 上游 main 的 media.js 同样有 file:// copyFile 分支，未加路径限制。
 
+- GitHub 搜索 SSRF/media issue 均 0 条，未发现重复报告。
+
 ## 证据
 
 - data/security/experiments/LAB-AUDIT-003/evidence.txt；
