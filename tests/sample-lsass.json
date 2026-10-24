@@ -1,0 +1,22 @@
+[
+  {
+    "SourceImage": "C:\\lab\\dump.exe",
+    "TargetImage": "C:\\Windows\\System32\\lsass.exe",
+    "GrantedAccess": "0x1010"
+  },
+  {
+    "SourceImage": "C:\\Windows\\System32\\svchost.exe",
+    "TargetImage": "C:\\Windows\\System32\\lsass.exe",
+    "GrantedAccess": "0x1000"
+  },
+  {
+    "SourceImage": "C:\\Windows\\System32\\MsMpEng.exe",
+    "TargetImage": "C:\\Windows\\System32\\lsass.exe",
+    "GrantedAccess": "0x1410"
+  },
+  {
+    "SourceImage": "C:\\Windows\\System32\\notepad.exe",
+    "TargetImage": "C:\\Windows\\System32\\notepad.exe",
+    "GrantedAccess": "0x1010"
+  }
+]

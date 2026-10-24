@@ -1,0 +1,25 @@
+title: Suspicious LSASS Access
+id: 6f1c2a9e-lab-0010
+status: experimental
+description: Detects process access to lsass.exe with common credential dumping access masks.
+author: lead
+date: 2026/10/24
+logsource:
+  category: process_access
+  product: windows
+detection:
+  target:
+    TargetImage|endswith: '\\lsass.exe'
+  mask:
+    GrantedAccess|contains:
+      - '0x1010'
+      - '0x1410'
+      - '0x143a'
+  condition: target and mask
+falsepositives:
+  - EDR/AV products
+  - Legitimate backup tools
+level: high
+tags:
+  - attack.credential_access
+  - attack.t1003.001
