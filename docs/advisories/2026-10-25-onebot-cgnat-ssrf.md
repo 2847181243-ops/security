@@ -32,6 +32,11 @@
 - 代码：profiles/desktop/node_modules/dsh-onebot-qq/lib/media.js，isPrivateIpv4 约 255-265 行，assertDownloadableUrl 约 220-247 行；
 - 报告：LAB-AUDIT-003。
 
+## 上游仓库
+
+- package.json 的 repository: github.com/mario841859784/dsh-onebot；本次网络无法验证仓库可访问，未联系作者；
+- 如需披露，走该仓库的 Security Advisory/issue，先给 90 天修复窗口。
+
 ## 约束
 
 - 不提供可直接利用的完整 exploit；
