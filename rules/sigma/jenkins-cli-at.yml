@@ -1,0 +1,19 @@
+title: Jenkins CLI @ File Argument
+id: "bf139f48-62ad-4e76-b23d-fa314ac46f1e"
+status: experimental
+description: Detects Jenkins CLI requests carrying @-prefixed file arguments (CVE-2024-23897).
+author: lead
+date: 2026/10/24
+logsource:
+  category: webserver
+detection:
+  selection:
+    cs-uri-stem|endswith: '/cli'
+    cs-uri-query|contains: '@'
+  condition: selection
+falsepositives:
+  - Legitimate CLI use with @args files
+level: high
+tags:
+  - attack.initial_access
+  - cve.2024.23897
