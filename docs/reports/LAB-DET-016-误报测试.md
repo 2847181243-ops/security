@@ -39,6 +39,10 @@ H1：正常请求不命中 SQLi/XSS 规则。
 | XSS | 0 | total=30 |
 | LFI | 0 | total=30 |
 | SSRF | 0 | total=30 |
+| Tomcat PUT | 0 | total=30 |
+| Struts OGNL | 0 | total=30 |
+| Log4Shell | 0 | total=30 |
+| Spring4Shell | 0 | total=30 |
 
 ## 6. 证据
 
@@ -48,7 +52,7 @@ H1：正常请求不命中 SQLi/XSS 规则。
 
 ## 7. 分析
 
-事实：30 条正常请求下，SQLi/XSS/LFI/SSRF 四条规则均 0 命中。推断：当前规则对常规 DVWA 页面误报低；样本以登录/302 跳转为主，覆盖不足，不能代表全部业务。
+事实：30 条正常请求下，SQLi/XSS/LFI/SSRF/Tomcat PUT/Struts/Log4Shell/Spring4Shell 八条规则均 0 命中。推断：当前规则对常规 DVWA 页面误报低；样本以登录/302 跳转为主，覆盖不足，不能代表全部业务。
 
 ## 8. 风险与影响
 
