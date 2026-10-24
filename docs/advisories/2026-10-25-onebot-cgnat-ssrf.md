@@ -22,7 +22,8 @@
 
 ## 建议修复
 
-- 在 isPrivateIpv4 增加：first === 100 && second >= 64 && second <= 127；
+- 在 isPrivateIpv4 增加 100.64/10、198.18/15、192.0.0/24、240/4；补丁见 docs/security/patches/onebot-cgnat-fix.diff；
+- 在副本上应用补丁后重测：上述段全部被拒，100.128.0.1 仍可访问；
 - 下载时固定 lookup 得到的 IP（连接该 IP，Host 头保留域名），避免二次解析。
 
 ## 证据
