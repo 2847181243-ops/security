@@ -27,6 +27,8 @@ lib/media.js 的 resolveInner 对 file:// 开头的 ref.file 直接 copyFile(sou
 - 或限制 file:// 源到配置的媒体根目录，做 realpath 前缀校验；
 - 不改变 resolveHash 的可信路径。
 
+- 上游 main 的 media.js 同样有 file:// copyFile 分支，未加路径限制。
+
 ## 证据
 
 - data/security/experiments/LAB-AUDIT-003/evidence.txt；
