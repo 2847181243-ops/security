@@ -19,3 +19,4 @@ jobs:
           node scripts/detect_web_lfi.mjs
           node scripts/detect_cve_2021_41773.mjs
           node scripts/detect_web_ssrf.mjs
+          node scripts/detect_persistence.mjs

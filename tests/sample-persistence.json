@@ -1,0 +1,32 @@
+[
+  {
+    "type": "registry",
+    "TargetObject": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\FakeUpdater",
+    "Details": "C:\\lab\\fake.exe"
+  },
+  {
+    "type": "registry",
+    "TargetObject": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce\\Setup",
+    "Details": "C:\\setup.exe"
+  },
+  {
+    "type": "registry",
+    "TargetObject": "HKCU\\Software\\Vendor\\App\\Settings",
+    "Details": "x"
+  },
+  {
+    "type": "process",
+    "Image": "C:\\Windows\\System32\\schtasks.exe",
+    "CommandLine": "schtasks /create /tn FakeTask /tr cmd.exe /sc once"
+  },
+  {
+    "type": "process",
+    "Image": "C:\\Windows\\System32\\schtasks.exe",
+    "CommandLine": "schtasks /query /tn FakeTask"
+  },
+  {
+    "type": "process",
+    "Image": "C:\\Windows\\System32\\notepad.exe",
+    "CommandLine": "notepad.exe"
+  }
+]

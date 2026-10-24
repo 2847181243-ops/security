@@ -1,0 +1,21 @@
+title: Registry Run Key Persistence
+id: 6f1c2a9e-lab-0007
+status: experimental
+description: Detects writes to Windows Run keys.
+author: lead
+date: 2026/10/24
+logsource:
+  category: registry_set
+  product: windows
+detection:
+  selection:
+    TargetObject|endswith:
+      - '\CurrentVersion\Run\'
+      - '\CurrentVersion\RunOnce\'
+  condition: selection
+falsepositives:
+  - Legitimate installers
+level: medium
+tags:
+  - attack.persistence
+  - attack.t1547.001
