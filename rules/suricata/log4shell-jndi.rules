@@ -1,0 +1,1 @@
+alert tcp any any -> any any (msg:"CVE-2021-44228 Log4Shell JNDI LDAP Lookup"; flow:to_server,established; content:"jndi:ldap://"; nocase; classtype:attempted-admin; sid:202144228; rev:1;)

