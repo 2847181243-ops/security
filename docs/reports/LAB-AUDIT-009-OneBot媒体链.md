@@ -17,7 +17,7 @@
 
 ## 2. 范围与环境
 
-- 插件：profiles/desktop/node_modules/dsh-onebot-qq 0.9.6，上游 main 同版本逻辑；
+- 插件：profiles/desktop/node_modules/dsh-onebot-qq 0.9.6；上游 main 分支 media.js 逻辑相同，上游版本号未核对；
 - 方法：读 media.js/inbound.js，复制 lib 为 ESM 副本，用 fetch stub 动态调用 MediaStore；
 - 只读公网/本地自建 proof 文件，不访问真实内网目标。
 
@@ -37,7 +37,7 @@ H1：SSRF fence 覆盖所有私网/保留段；H2：file:// ref 只允许可信�
 | 测试 | 结果 |
 |---|---|
 | 10/127/192.168/169.254 | fetch 前拒绝 |
-| 100.64/10、240/4、198.18/15、192.0.0.1 | 到达 fetch |
+| 100.64/10、240/4、198.18/15、192.0.0.1（各测一个代表地址） | 到达 fetch |
 | [::ffff:100.64.1.2]、[64:ff9b::7f00:1] | 到达 fetch |
 | 302 到 127.0.0.1 | 第二跳前拒绝 |
 | 302 到 100.64.1.2 | 继续跟随到跳数上限 |
@@ -46,8 +46,8 @@ H1：SSRF fence 覆盖所有私网/保留段；H2：file:// ref 只允许可信�
 ## 6. 证据
 
 - 证据文件：data/security/experiments/LAB-AUDIT-009/evidence.txt；
-- 脚本：scripts/test_onebot_cgnat.mjs、test_onebot_fence.mjs、test_onebot_fence_v6.mjs、test_onebot_file_ref.mjs；
-- 补丁：docs/patches/onebot-cgnat-fix.diff（副本验证）；
+- 脚本（repo 内可复跑，含 onebot-esm 副本）：scripts/test_cgnat.mjs、test_fence_matrix.mjs、test_fence_v6.mjs、test_fence_redirect.mjs、test_file_ref.mjs；本地 lab/fuzz 有同名副本；
+- 补丁：docs/security/patches/onebot-cgnat-fix.diff（repo 内为 docs/patches/onebot-cgnat-fix.diff，副本验证）；
 - advisory：advisories/2026-10-25-onebot-cgnat-ssrf*.md、2026-10-25-onebot-file-read.md。
 
 ## 7. 分析
