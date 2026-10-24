@@ -34,7 +34,7 @@
 
 ## 上游仓库
 
-- package.json 的 repository: github.com/mario841859784/dsh-onebot；本次网络无法验证仓库可访问，未联系作者；
+- package.json 的 repository: github.com/mario841859784/dsh-onebot；上游 main 分支 media.js 已拉取核对，isPrivateIpv4 仍是同样的六段，缺口未修；未联系作者；
 - 如需披露，走该仓库的 Security Advisory/issue，先给 90 天修复窗口。
 
 ## 约束
