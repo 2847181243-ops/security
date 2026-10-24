@@ -49,11 +49,11 @@ H1：解包后能正常扫描；H2：可能有路径/上传/鉴权类问题。
 
 ## 7. 分析
 
-事实：49 个文件被扫，0 命中，2 个错误都是 PartialParsing，位置在 dsh-api-workspace-files/lib/index.js。人工看了该文件：read/readBytes/stat 注释明确允许读 workspace 外文件（后端权限模型），list/changes 用 contains 限制目录在 workspace 内；未发现目录越权读。另看了 dsh-api-gateway/lib/index.js 的 prepareInvocation：非 owner principal 会走 remoteAccess.decide，owner 直接放行；未发现明显绕过。走读 dsh-onebot-qq 的 media.js：文件名由 UUID 生成、扩展名白名单、下载走私网 SSRF fence；未发现路径穿越或命令注入。推断：OWASP 规则覆盖有限，0 命中不等于安全。
+事实：49 个文件被扫，0 命中，2 个错误都是 PartialParsing，位置在 dsh-api-workspace-files/lib/index.js。人工看了该文件：read/readBytes/stat 注释明确允许读 workspace 外文件（后端权限模型），list/changes 用 contains 限制目录在 workspace 内；未发现目录越权读。另看了 dsh-api-gateway/lib/index.js 的 prepareInvocation：非 owner principal 会走 remoteAccess.decide，owner 直接放行；未发现明显绕过。走读 dsh-onebot-qq 的 media.js：文件名由 UUID 生成、扩展名白名单、下载走私网 SSRF fence；未发现路径穿越或命令注入。SSRF fence 覆盖 0/10/127/172.16-31/192.168/169.254，但**没有 100.64.0.0/10（CGNAT）**；另外 lookup 后再 fetch 存在 DNS rebinding 的 TOCTOU 窗口。两者都未做动态验证，属代码层候选。推断：OWASP 规则覆盖有限，0 命中不等于安全。
 
 ## 8. 风险与影响
 
-把 0 命中当安全结论会误导；需要动态测试和人工审计补充。
+把 0 命中当安全结论会误导；需要动态测试和人工审计补充。onebot 的 CGNAT 缺口在部分云/运营商网络可成为 SSRF 跳板；DNS rebinding 需要攻击者控制 DNS 且目标二次解析，条件更高。
 
 ## 9. 修复与后续
 
