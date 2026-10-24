@@ -34,4 +34,4 @@ dsh-onebot-qq 的媒体下载 SSRF fence（lib/media.js / isPrivateIpv4）只覆
 ## 时间线
 
 - 2026-10-25 发现/验证；
-- 计划 90 天协调窗口；联系渠道为 GitHub 仓库 Security Advisory/issue。
+- 计划 90 天协调窗口；联系渠道为 GitHub 仓库 Security Advisory（私密）；仓库公开、issues 开启，未联系作者。
