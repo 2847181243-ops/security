@@ -1,6 +1,6 @@
 import http from "node:http";
 const base="http://127.0.0.1:8099";
-const seeds=["http://127.0.0.1:8099/","http://example.com/","file:///etc/passwd","gopher://127.0.0.1:1389/_x","http://[::1]:8099/","http://127.0.0.1:1/","http://","http://%zz/","ftp://127.0.0.1/","http://169.254.169.254/latest/meta-data/"];
+const seeds=["http://127.0.0.1:8099/","http://127.0.0.1:8099/metadata","file:///etc/passwd","gopher://127.0.0.1:1389/_x","http://[::1]:8099/","http://127.0.0.1:1/","http://","http://%zz/","ftp://127.0.0.1/","http://127.0.0.1:65535/"];
 function req(path){return new Promise(res=>{const r=http.request(base+path,{timeout:2000},resp=>{let b="";resp.on("data",c=>b+=c);resp.on("end",()=>res(resp.statusCode));});r.on("timeout",()=>{r.destroy();res("timeout");});r.on("error",e=>res("err:"+e.code));r.end();});}
 let numeric=0,err=0,alive=false;const st={};
 for(let i=0;i<200;i++){

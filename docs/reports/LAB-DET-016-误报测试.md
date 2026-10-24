@@ -44,11 +44,11 @@ H1：正常请求不命中 SQLi/XSS 规则。
 
 - 证据文件：data/security/experiments/LAB-DET-016/evidence.txt；
 - 日志：data/security/detections/benign-dvwa.log（30 行）；
-- 脚本：detect_web_sqli.mjs、detect_web_xss.mjs。
+- 脚本：detect_web_sqli.mjs、detect_web_xss.mjs、detect_web_lfi.mjs、detect_web_ssrf.mjs。
 
 ## 7. 分析
 
-事实：30 条正常请求下，SQLi/XSS/LFI/SSRF 四条规则均 0 命中。推断：当前规则对常规 DVWA 页面误报低；样本只覆盖 20 个 URL，不能代表全部业务。
+事实：30 条正常请求下，SQLi/XSS/LFI/SSRF 四条规则均 0 命中。推断：当前规则对常规 DVWA 页面误报低；样本以登录/302 跳转为主，覆盖不足，不能代表全部业务。
 
 ## 8. 风险与影响
 
@@ -62,4 +62,4 @@ H1：正常请求不命中 SQLi/XSS 规则。
 
 ## 10. 结论
 
-通过：正常流量 30 条，SQLi/XSS 规则 0 命中。
+通过：正常流量 30 条，SQLi/XSS/LFI/SSRF 四条规则 0 命中。

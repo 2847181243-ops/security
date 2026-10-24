@@ -43,7 +43,7 @@ hits=1 total=3。
 
 ## 6. 证据
 
-- 证据文件：data/security/experiments/LAB-DET-015/evidence.txt；
+- 证据文件：data/security/experiments/LAB-DET-015/evidence.txt（含 sigma_validate files=14 ok=14）；
 - 规则：docs/security/detections/dns-tunneling.yml；
 - 脚本：runtime/security/detect_dns_tunnel.mjs。
 
