@@ -1,5 +1,5 @@
 title: Reflected XSS Attempt in Web Access Log
-id: 6f1c2a9e-lab-0002
+id: "a87f6ac5-12e3-4a25-8105-a75a2f1525ec"
 status: experimental
 description: Detects HTML script payloads in web access log query strings.
 author: lead

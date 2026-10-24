@@ -1,5 +1,5 @@
 title: Scheduled Task Creation via schtasks
-id: 6f1c2a9e-lab-0008
+id: "84a8132b-0c26-4069-8068-9cd0779b4e78"
 status: experimental
 description: Detects schtasks.exe creating a task.
 author: lead

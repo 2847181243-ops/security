@@ -1,5 +1,5 @@
 title: SQL Injection Attempt in Web Access Log
-id: 6f1c2a9e-lab-0001
+id: "7464892f-948a-4529-9e73-6b6f0a8210d6"
 status: experimental
 description: Detects common SQL injection payloads in web access log query strings.
 author: lead

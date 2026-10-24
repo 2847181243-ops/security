@@ -1,5 +1,5 @@
 title: Suspicious LOLBin Download or Script Execution
-id: 6f1c2a9e-lab-0009
+id: "e0113e82-ed33-4014-bdfb-67710eeb66ae"
 status: experimental
 description: Detects certutil/rundll32/mshta used with remote or script arguments.
 author: lead

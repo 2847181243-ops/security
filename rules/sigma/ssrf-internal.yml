@@ -1,5 +1,5 @@
 title: SSRF to Internal Address in Web Log
-id: 6f1c2a9e-lab-0006
+id: "aa973c38-a40f-4373-9f9e-336d384fe12f"
 status: experimental
 description: Detects URL parameters targeting loopback or link-local addresses.
 author: lead

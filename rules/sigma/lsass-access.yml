@@ -1,5 +1,5 @@
 title: Suspicious LSASS Access
-id: 6f1c2a9e-lab-0010
+id: "9d1bd9ad-3770-404e-b503-1ab35db902fe"
 status: experimental
 description: Detects process access to lsass.exe with common credential dumping access masks.
 author: lead

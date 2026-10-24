@@ -1,5 +1,5 @@
 title: Web Server Spawning Shell
-id: 6f1c2a9e-lab-0003
+id: "13adba9f-1c19-4003-81d8-67248ccb329f"
 status: experimental
 description: Detects a web server process spawning a shell, a common command-injection pattern.
 author: lead

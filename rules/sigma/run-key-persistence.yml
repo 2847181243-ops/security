@@ -1,5 +1,5 @@
 title: Registry Run Key Persistence
-id: 6f1c2a9e-lab-0007
+id: "7271fd12-b672-47ad-a526-184ce72b2641"
 status: experimental
 description: Detects writes to Windows Run keys.
 author: lead

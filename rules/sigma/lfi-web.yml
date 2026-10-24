@@ -1,5 +1,5 @@
 title: Path Traversal in Web Access Log
-id: 6f1c2a9e-lab-0004
+id: "b5f4c37f-bcd3-4c32-a1b2-a946802410a6"
 status: experimental
 description: Detects deep traversal sequences or attempts to read sensitive files.
 author: lead
