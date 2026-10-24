@@ -50,3 +50,9 @@
 - HTTPS 保留 Host/SNI 为原域名，避免证书错误；
 - 每次重定向重新解析并重新固定，不复用旧 IP；
 - 未写代码、未测试，仅方案。
+
+## 联系 issue 草稿（未发）
+
+标题：Request a private security contact
+
+正文：Hi，我在本地审计 0.9.6 的媒体下载/SSRF 过滤，发现一个地址校验缺口，能提供复现和补丁。仓库的 private vulnerability reporting 是关的；能否给一个私密渠道，或开一个临时 advisory？收到后我会附最小 PoC 和修复建议。
