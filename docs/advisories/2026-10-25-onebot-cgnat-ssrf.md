@@ -36,3 +36,11 @@
 
 - 不提供可直接利用的完整 exploit；
 - 未联系上游作者；如需披露，先走插件仓库 security 渠道。
+
+## TOCTOU 设计（未实现）
+
+- 解析一次，校验所有地址，选一个公网 IP；
+- 用 undici Agent 的 connect.lookup 固定返回该 IP，fetch 时传 dispatcher；
+- HTTPS 保留 Host/SNI 为原域名，避免证书错误；
+- 每次重定向重新解析并重新固定，不复用旧 IP；
+- 未写代码、未测试，仅方案。
