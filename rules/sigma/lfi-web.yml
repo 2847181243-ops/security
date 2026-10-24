@@ -1,0 +1,26 @@
+title: Path Traversal in Web Access Log
+id: 6f1c2a9e-lab-0004
+status: experimental
+description: Detects deep traversal sequences or attempts to read sensitive files.
+author: lead
+date: 2026/10/24
+logsource:
+  category: webserver
+detection:
+  deep_traversal:
+    cs-uri-query|contains:
+      - '..%2F..%2F..%2F'
+      - '../../..'
+  sensitive_file:
+    cs-uri-query|contains:
+      - 'etc%2Fpasswd'
+      - '/etc/passwd'
+      - 'win.ini'
+  condition: deep_traversal or sensitive_file
+falsepositives:
+  - Authorized tests
+  - Rare applications with deep relative paths in query strings
+level: high
+tags:
+  - attack.discovery
+  - attack.t1083

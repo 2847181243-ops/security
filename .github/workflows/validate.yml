@@ -16,3 +16,5 @@ jobs:
           node scripts/detect_web_sqli.mjs
           node scripts/detect_web_xss.mjs
           node scripts/detect_web_shell.mjs
+          node scripts/detect_web_lfi.mjs
+          node scripts/detect_cve_2021_41773.mjs

@@ -28,10 +28,10 @@ H1：两个容器能启动并响应；H2：切回 labnet 后仍可访问。
 ## 4. 步骤
 
 1. 文本安装 Debian，建 lab 用户；
-2. 临时 NAT，配置 10.0.2.15/24，apt 安装 docker.io/compose；
+2. 临时 NAT，配置 192.0.2.200/24，apt 安装 docker.io/compose；
 3. 拉镜像，docker run dvwa(8080)/juice(3000)；
 4. 验证 HTTP；
-5. 设置容器 restart=always，切回 intnet/labnet 静态 192.0.2.10。
+5. 设置容器 restart=always，切回 intnet/labnet 静态 192.0.2.100。
 
 ## 5. 结果
 
@@ -62,7 +62,7 @@ Windows 侧配静态 IP 被 UAC 拦；改用 link-local：Windows APIPA 192.0.2.
 
 ## 9. 修复与后续
 
-- 立即动作：确认 labnet 内 Linux 192.0.2.10 可达（待 Windows 侧网络配置）；
+- 立即动作：确认 labnet 内 Linux 192.0.2.100 可达（待 Windows 侧网络配置）；
 - 长期动作：用 host-only DHCP 或提权方式配置 Windows IP；
 - 未解决：DVWA 各漏洞模块的练习记录（下一步）。
 
