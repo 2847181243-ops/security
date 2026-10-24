@@ -6,7 +6,7 @@
 - 版本：dsh-onebot-qq 0.9.6（npm 最新也是 0.9.6，缺口未在上游修复）
 - 发现者：lead（AI）
 - 日期：2026-10-25
-- 状态：代码层候选，未动态验证，未对外披露
+- 状态：动态验证（fence 对 100.64.1.2 放行到 fetch 层），未对外披露
 
 ## 问题
 
@@ -26,6 +26,7 @@
 
 ## 证据
 
+- 动态测试：downloadUrl 对 10/127/192.168/169.254 在 fetch 前拒绝，100.64.1.2 到达 fetch；
 - 代码：profiles/desktop/node_modules/dsh-onebot-qq/lib/media.js，isPrivateIpv4 约 255-265 行，assertDownloadableUrl 约 220-247 行；
 - 报告：LAB-AUDIT-003。
 
