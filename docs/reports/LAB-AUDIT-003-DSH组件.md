@@ -49,7 +49,7 @@ H1：解包后能正常扫描；H2：可能有路径/上传/鉴权类问题。
 
 ## 7. 分析
 
-事实：49 个文件被扫，0 命中，2 个错误都是 PartialParsing，位置在 dsh-api-workspace-files/lib/index.js。人工看了该文件：read/readBytes/stat 注释明确允许读 workspace 外文件（后端权限模型），list/changes 用 contains 限制目录在 workspace 内；未发现目录越权读。另看了 dsh-api-gateway/lib/index.js 的 prepareInvocation：非 owner principal 会走 remoteAccess.decide，owner 直接放行；未发现明显绕过。走读 dsh-onebot-qq 的 media.js：文件名由 UUID 生成、扩展名白名单、下载走私网 SSRF fence；未发现路径穿越或命令注入。SSRF fence 覆盖 0/10/127/172.16-31/192.168/169.254，但**没有 100.64.0.0/10（CGNAT）**；另外 lookup 后再 fetch 存在 DNS rebinding 的 TOCTOU 窗口。两者都未做动态验证，属代码层候选。推断：OWASP 规则覆盖有限，0 命中不等于安全。
+事实：49 个文件被扫，0 命中，2 个错误都是 PartialParsing，位置在 dsh-api-workspace-files 的 lib/index.js 与 lib/types/index.js。人工看了该文件：read/readBytes/stat 注释明确允许读 workspace 外文件（后端权限模型），list/changes 用 contains 限制目录在 workspace 内；未发现目录越权读。另看了 dsh-api-gateway/lib/index.js 的 prepareInvocation：非 owner principal 会走 remoteAccess.decide，owner 直接放行；未发现明显绕过。走读 dsh-onebot-qq 的 media.js：文件名由 UUID 生成、扩展名白名单、下载走私网 SSRF fence；未发现路径穿越或命令注入。SSRF fence 覆盖 0/8、10/8、127/8、172.16/12、192.168/16、169.254/16，但**没有 100.64.0.0/10（CGNAT）**；另外 lookup 后再 fetch 存在 DNS rebinding 的 TOCTOU 窗口。两者都未做动态验证，属代码层候选。推断：OWASP 规则覆盖有限，0 命中不等于安全。
 
 ## 8. 风险与影响
 

@@ -38,14 +38,14 @@ H1：Jazzer 能在 Windows 跑；H2：URL 解析本身不应崩溃。
 |---|---|
 | 运行次数 | 30,000 |
 | 覆盖边 | 7 |
-| 语料 | 2 条 / 3 字节 |
+| 语料 | Jazzer 内部 corp 2/3b；corpus 目录 2 个种子（2B + 19B） |
 | 崩溃 | 0 |
 
 ## 6. 证据
 
 - 证据文件：data/security/experiments/LAB-FUZZ-003/evidence.txt；
 - harness：lab/fuzz/urltarget.cjs；
-- 语料目录：lab/fuzz/corpus。
+- 语料目录：lab/fuzz/corpus（2 个种子）；原始统计见 evidence。
 
 ## 7. 分析
 
