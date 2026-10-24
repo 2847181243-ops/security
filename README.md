@@ -8,6 +8,7 @@
 |---|---|
 | docs/reports | 实验报告（模板 _模板.md，索引 索引.md） |
 | docs/intel | KEV/NVD/EPSS 情报简报 |
+| docs/cards | 漏洞卡（训练靶场/真实项目分开标注） |
 | docs/methodology | 靶场部署、隔离设计与应急方法 |
 | rules/sigma | Sigma 检测规则 |
 | rules/semgrep | 自写 Semgrep 规则 |
