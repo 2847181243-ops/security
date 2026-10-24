@@ -59,6 +59,13 @@ H1：单层编码能命中；H2：双重编码/实体编码会漏。
 - 建变体测试集；
 - 未解决：未做多层编码穷举。
 
+## 6.1 归一化预处理器
+
+- 脚本：runtime/security/normalize_and_detect.mjs；
+- 逻辑：最多两层 URL 解码 + HTML 实体解码后再匹配；
+- 结果：同一批 5 行样本，SQLi 2/5、XSS 3/5，5 行全部命中；
+- 证据：evidence.txt 的 normalization preprocessor 段。
+
 ## 10. 结论
 
-通过：双重编码与 HTML 实体漏报已修，规则覆盖率提升。
+通过：双重编码与 HTML 实体漏报已修，归一化后 5 行样本全部命中。
