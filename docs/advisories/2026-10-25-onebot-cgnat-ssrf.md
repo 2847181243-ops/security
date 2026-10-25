@@ -36,7 +36,7 @@
 
 - package.json 的 repository: github.com/mario841859784/dsh-onebot；上游 main 分支 media.js 已拉取核对，isPrivateIpv4 仍是同样的六段，缺口未修；
 - 仓库是公开仓库、issues 开启，最近 push 2026-10-24；GitHub 搜索 SSRF/media 相关 issue 均为 0 条；未联系作者；
-- 上游 private vulnerability reporting 为 disabled，GitHub 私密 advisory 不可用；已开联系 issue #7（不含细节）：https://github.com/mario841859784/dsh-onebot/issues/7 ；可先开一个不含细节的 issue 请求私密渠道，或通过仓库 owner 主页联系方式；先给 90 天修复窗口。
+- 上游 private vulnerability reporting 为 disabled，GitHub 私密 advisory 不可用；已开联系 issue #7（不含细节）：https://github.com/mario841859784/dsh-onebot/issues/7 ；已开修复 PR #8（SSRF 段补全 + 测试）：https://github.com/mario841859784/dsh-onebot/pull/8 ；可先开一个不含细节的 issue 请求私密渠道，或通过仓库 owner 主页联系方式；先给 90 天修复窗口。
 
 ## 约束
 
