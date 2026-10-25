@@ -19,7 +19,7 @@
 
 - 目标：Juice Shop 容器，http://192.0.2.10:3000（证据里的目标地址已脱敏）；
 - 攻击机：lab-win PowerShell；
-- 只打本地靶场，未使用返回的令牌访问其他资源。
+- 只打本地靶场；后续用返回的令牌访问同靶场的 /api/Users 验证影响。
 
 ## 3. 假设
 
@@ -37,16 +37,18 @@ H1：登录接口把 email 拼进 SQL，可用 OR 绕过。
 |---|---|---|---|
 | HTTP 状态 | 200 | 200 | 通过 |
 | 返回 JWT | 有 | TOKEN_PRESENT=True；payload 中 email=admin@juice-sh.op、role=admin | 通过 |
+| 管理员 API | 可访问 | GET /api/Users 带 Bearer → 200，23 个用户，角色含 admin/customer/deluxe/accounting | 通过 |
 
 ## 6. 证据
 
 - 证据文件：data/security/experiments/LAB-PT-004/evidence.txt；
 - 脚本：lab/win_juice_sqli_evidence.ps1；
-- 输出：HTTP=200、TOKEN_PRESENT=True、PAYLOAD 含 email=admin@juice-sh.op、role=admin；令牌原文未写入报告。
+- 输出：HTTP=200、TOKEN_PRESENT=True、PAYLOAD 含 email=admin@juice-sh.op、role=admin；令牌原文未写入报告；
+- 管理员 API 证据：data/security/experiments/LAB-PT-004/evidence-admin.txt。
 
 ## 7. 分析
 
-事实：payload 绕过登录并返回 admin 的 JWT。推断：可接管管理员会话；未继续用该令牌做后续操作。
+事实：payload 绕过登录并返回 admin 的 JWT；用该 JWT 访问 /api/Users 返回 200、23 个用户。推断：登录 SQLi 可直接接管管理员 API 权限，不只是伪造登录态。
 
 ## 8. 风险与影响
 
@@ -56,8 +58,8 @@ H1：登录接口把 email 拼进 SQL，可用 OR 绕过。
 
 - 修复：参数化查询；
 - 检测：登录接口异常参数/失败率规则；
-- 未解决：未验证令牌权限范围。
+- 未解决：未对返回的用户数据做脱敏导出，只统计数量。
 
 ## 10. 结论
 
-通过：登录 SQL 注入复现。
+通过：登录 SQL 注入复现，并验证可访问管理员 API。
