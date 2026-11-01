@@ -23,6 +23,8 @@ lib/media.js 的 resolveInner 对 file:// 开头的 ref.file 直接 copyFile(sou
 
 ## 建议修复
 
+- 已准备分支 `fix/file-ref-roots`：新增 `fileRefRoots` 配置（默认空 = 拒绝所有入站 file://），按 realpath 校验源路径；media-guard 17/17 通过，未开 PR。
+
 - inbound 只接受 NapCat 可信来源的 file 字段；拒绝 file:// 形式；
 - 或限制 file:// 源到配置的媒体根目录，做 realpath 前缀校验；
 - 不改变 resolveHash 的可信路径。
